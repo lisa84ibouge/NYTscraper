@@ -8,11 +8,10 @@ var headlineSchema = new Schema ({
         required: true, 
         unique: true
     }, 
-    Summary: {
+    summary: {
         type: String, 
         required: true
     }
-
 });
 
 var Headline = mongoose.model("Headline", headlineSchema);

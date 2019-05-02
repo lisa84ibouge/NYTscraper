@@ -10,13 +10,19 @@ module.exports = {
             for (var i = 0; i < articles.length; i++){
                 articles[i].date = makeDate();
                 articles[i].saved = false;
+            }
 
-
+            if (articles.length == 0) {
+                cb("No articles found", null);
+                return;
             }
 
             Headline.collection.insertMany(articles, {ordered: false}, function(err, docs) {
+                console.log("err is ");
+                console.log(err);
+                console.log("docs is ");
+                console.log(docs);
                 cb(err, docs);
-
             });
 
         });

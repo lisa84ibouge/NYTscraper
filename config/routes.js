@@ -12,6 +12,7 @@ router.get("/saved", function(req, res) {
 });
 router.get("/api/fetch", function(req, res) {
     headlinesController.fetch(function(err, docs) {
+        console.log("Err is " + err);
         if (!docs || docs.insertedCount === 0) {
             res.json({
                 message: "No new articles today. Check back tomorrow!"
@@ -29,7 +30,12 @@ router.get("/api/fetch", function(req, res) {
             if (req.query.saved) {
                 query = req.query;
             }
+            console.log("Query is ");
+            console.log(query);
+            query = {};
             headlinesController.get(query, function(data){
+                console.log("headlines query");
+                console.log(data);
                 res.json(data);
             });
         
