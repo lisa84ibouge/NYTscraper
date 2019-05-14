@@ -13,8 +13,9 @@ $(document).ready(function () {
     function initPage() {
         articleContainer.empty();
         $.get("/api/headlines?saved=true").then(function (data) {
-
+            
             if (data && data.length) {
+                console.log("Data:", data)
                 renderArticles(data);
             } else {
                 renderEmpty();
@@ -28,7 +29,10 @@ $(document).ready(function () {
         var articlePanels = [];
 
         for (var i = 0; i < articles.length; i++) {
-            articlePanels.push(createPanel(articles[i]));
+            console.log("Article Loop: ", articles[i])
+            if (articles[i].saved ) {
+                articlePanels.push(createPanel(articles[i]));
+            }
 
         }
 
@@ -139,7 +143,7 @@ function handleArticleNotes(){
             currentArticle._id,
             "</h4>",
             "<hr />",
-            "ul class='list-group note-container'>",
+            "<ul class='list-group note-container'>",
             "</ul>",
             "<textarea placeholder='New Note' rows='4' cols'60'></textarea>",
             "<button class='btn btn-success save'>Save Note</button>"

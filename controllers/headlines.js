@@ -18,10 +18,8 @@ module.exports = {
             }
 
             Headline.collection.insertMany(articles, {ordered: false}, function(err, docs) {
-                console.log("err is ");
-                console.log(err);
-                console.log("docs is ");
-                console.log(docs);
+                console.log("err is ", err);
+                console.log("docs is ", docs);
                 cb(err, docs);
             });
 
@@ -43,6 +41,7 @@ module.exports = {
         })
     },
     update: function(query, cb) {
+        console.log("QUERY IS", query)
         Headline.update({_id: query._id}, {
             $set: query
         }, {}, cb);

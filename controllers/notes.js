@@ -3,8 +3,10 @@ var makeDate = require("../scripts/date");
 
 module.exports = {
     get: function(data, cb) {
+        console.log("Data is", data._id);
         Note.find({
             _headlineId: data._id
+
         }, cb);
     },
     save: function(data, cb){

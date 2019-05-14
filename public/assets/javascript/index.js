@@ -85,7 +85,9 @@ function renderArticles(articles){
     }
 
 function handleArticleSave() {
+    
     var articleToSave = $(this).parents(".panel").data();
+    console.log("Saved Article", articleToSave)
     articleToSave.saved = true;
 
     $.ajax({

@@ -11,6 +11,10 @@ var headlineSchema = new Schema ({
     summary: {
         type: String, 
         required: true
+    }, 
+    saved: {
+        type: Boolean,
+        required: true
     }
 });
 

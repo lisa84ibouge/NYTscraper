@@ -9,6 +9,7 @@ module.exports = function(router) {
 
 router.get("/saved", function(req, res) {
     res.render("saved");
+   //res.json({message: "Hello World"})
 });
 router.get("/api/fetch", function(req, res) {
     headlinesController.fetch(function(err, docs) {
@@ -30,12 +31,12 @@ router.get("/api/fetch", function(req, res) {
             if (req.query.saved) {
                 query = req.query;
             }
-            console.log("Query is ");
-            console.log(query);
+       //     console.log("Query is ");
+      //      console.log(query);
             query = {};
             headlinesController.get(query, function(data){
-                console.log("headlines query");
-                console.log(data);
+       //         console.log("headlines query");
+      //          console.log(data);
                 res.json(data);
             });
         
@@ -53,6 +54,7 @@ router.get("/api/fetch", function(req, res) {
 
     router.patch("/api/headlines", function(req, res) {
         headlinesController.update(req.body, function(err, data){
+            console.log("Data is ", data);
             res.json(data);
         });
     });
@@ -62,6 +64,8 @@ router.get("/api/fetch", function(req, res) {
                 query._id = req.params.headline_id;
             }
             notesController.get(query, function(err, data){
+                console.log("Data is", data);
+                console.log("Err is: ", err);
                 res.json(data);
             });
     });

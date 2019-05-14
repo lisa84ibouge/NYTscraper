@@ -9,7 +9,8 @@ var noteSchema = new Schema ({
 }, 
     date: String,
     noteText: String
-});
+
+}); 
 
 var Note = mongoose.model("Note", noteSchema);
 
