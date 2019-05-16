@@ -9,9 +9,25 @@ var scrape = function (cb) {
         var $ = cheerio.load(body);
         console.log("$ is " + $);
         var articles = [];
+        
+        $(".css-6p6lnl").each(function (i, element) {
+            var a_elem =  $(this).find("a")[0];
+            var uri = $(a_elem).attr("href");
+            var span_elem = $(this).find("span")[0];
+            var headline = $(span_elem).text();
+            var ul_elem = $(this).find("ul")[0];
+            var summary =  $(ul_elem).html();
 
+            var url = "https://www.nytimes.com" + uri;
+            var dataToAdd = {
+                headline: headline,
+                summary: summary,
+                url: url
+            };
+            articles.push(dataToAdd);
+        });
 
-        $(".css-1qwxefa").each(function (i, element) {
+       /* $(".css-1qwxefa").each(function (i, element) {
             var head = $(this).children(".story-heading").text().trim();
             var sum = $(this).children(".summary").text().trim();
             head_elem = $(this).children("span")
@@ -35,6 +51,7 @@ var scrape = function (cb) {
 
 
         });
+        */
         cb(articles);
 
 
